@@ -1,0 +1,39 @@
+#version 410 core
+
+in vec2 c0_vs[];
+in vec2 c1_vs[];
+in vec2 c2_vs[];
+in vec2 c3_vs[];
+in float height_vs[];
+in vec3 pos_vs[];
+in mat2 rot_vs[];
+in vec4 color_vs[];
+in int detail_level_vs[];
+
+layout(vertices = 4) out;
+
+out vec2 c0_cs[];
+out vec2 c1_cs[];
+out vec2 c2_cs[];
+out vec2 c3_cs[];
+out float height_cs[];
+out vec3 pos_cs[];
+out mat2 rot_cs[];
+out vec4 color_cs[];
+
+void main() {
+  c0_cs[gl_InvocationID] = c0_vs[0];
+  c1_cs[gl_InvocationID] = c1_vs[0];
+  c2_cs[gl_InvocationID] = c2_vs[0];
+  c3_cs[gl_InvocationID] = c3_vs[0];
+  height_cs[gl_InvocationID] = height_vs[0];
+  pos_cs[gl_InvocationID] = pos_vs[0];
+  rot_cs[gl_InvocationID] = rot_vs[0];
+  color_cs[gl_InvocationID] = color_vs[0];
+  gl_TessLevelOuter[0] = detail_level_vs[0];
+  gl_TessLevelOuter[1] = detail_level_vs[0];
+  gl_TessLevelOuter[2] = detail_level_vs[0];
+  gl_TessLevelOuter[3] = detail_level_vs[0];
+  gl_TessLevelInner[0] = detail_level_vs[0];
+  gl_TessLevelInner[1] = detail_level_vs[0];
+}
