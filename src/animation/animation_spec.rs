@@ -23,6 +23,10 @@ impl<Stage: Clone> AnimationSpec<Stage>{
         }
     }
 
+    pub fn reset(&mut self) {
+        self.time = 0.0;
+    }
+
     fn get_total_running_time(&self) -> f64 {
         self.windows.iter().map(|window| {window.length}).sum()
     }

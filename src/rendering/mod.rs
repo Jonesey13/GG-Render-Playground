@@ -1,6 +1,7 @@
 pub mod primitives;
 pub mod glium_renderer;
 pub mod renderables;
+pub mod animations;
 use gg::rendering::Renderable;
 
 pub use ::rendering::primitives::{BezierRect, BezierBranchRect, BezierBranchCirc, BezierQuadControl, CubicRect, BezierCubicControl};
