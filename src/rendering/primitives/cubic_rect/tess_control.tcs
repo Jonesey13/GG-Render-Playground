@@ -9,6 +9,8 @@ in vec3 pos_vs[];
 in mat2 rot_vs[];
 in vec4 color_vs[];
 in int detail_level_vs[];
+in vec2 anim_pos_vs[];
+in mat2 anim_rot_vs[];
 
 layout(vertices = 4) out;
 
@@ -20,6 +22,8 @@ out float height_cs[];
 out vec3 pos_cs[];
 out mat2 rot_cs[];
 out vec4 color_cs[];
+out vec2 anim_pos_cs[];
+out mat2 anim_rot_cs[];
 
 void main() {
   c0_cs[gl_InvocationID] = c0_vs[0];
@@ -30,6 +34,8 @@ void main() {
   pos_cs[gl_InvocationID] = pos_vs[0];
   rot_cs[gl_InvocationID] = rot_vs[0];
   color_cs[gl_InvocationID] = color_vs[0];
+  anim_pos_cs[gl_InvocationID] = anim_pos_vs[0];
+  anim_rot_cs[gl_InvocationID] = anim_rot_vs[0];
   gl_TessLevelOuter[0] = detail_level_vs[0];
   gl_TessLevelOuter[1] = detail_level_vs[0];
   gl_TessLevelOuter[2] = detail_level_vs[0];

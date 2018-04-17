@@ -10,6 +10,7 @@ pub struct PongFlip {
     dim: Vector2<f64>,
     flip_back: f64,
     flip_angle: f64,
+    animation_pos: Vector2<f64>,
     colour: Vector4<f64>
 }
 
@@ -20,6 +21,7 @@ impl PongFlip {
             dim: constants::pong_flip::DIM.into(),
             flip_back: 0.0,
             flip_angle: 0.0,
+            animation_pos: constants::pong_flip::FLIP_FULCRUM_POS.into(),
             colour: constants::pong::PADDLE_COLOUR.into(),
         }
     }
@@ -35,7 +37,7 @@ impl PongFlip {
             AnimationFunctionEnum::Linear, 0.5, FlipPhase::Hold
         );
         let flip_window = AnimationWindow::new(
-            AnimationFunctionEnum::Linear, constants::pong_flip::FLIP_DURATION, FlipPhase::Flip
+            AnimationFunctionEnum::SlowIn, constants::pong_flip::FLIP_DURATION, FlipPhase::Flip
         );
         AnimationSpec::new(vec![normal_window, flip_back_window, hold_window, flip_window], AnimationType::Linear)
     }
@@ -48,13 +50,15 @@ impl PongFlip {
 
         let control = BezierCubicControl::new(start_pos, start_middle_pos, end_middle_pos, end_pos);
 
-        CubicRect::new_with_color(
-            control, 
+        CubicRect::new_with_anim(
+            control.into(), 
             self.dim.x, 
             Vector3::zero(), 
-            Rotation2::new(2.0 * PI * self.flip_angle), 
+            Rotation2::new(0.0), 
             self.colour, 
-            100)
+            100,
+            self.animation_pos,
+            2.0 * PI * self.flip_angle)
     }
 
     fn update_flip(&mut self) {
@@ -72,7 +76,7 @@ impl PongFlip {
             FlipPhase::Normal => 0.0,
             FlipPhase::FlipBack => 0.0,
             FlipPhase::Hold => 0.0,
-            FlipPhase::Flip => -current_time / 2.0
+            FlipPhase::Flip => -current_time
         };
     }
 }

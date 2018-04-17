@@ -9,34 +9,37 @@ in float height_cs[];
 in vec3 pos_cs[];
 in mat2 rot_cs[];
 in vec4 color_cs[];
+in vec2 anim_pos_cs[];
+in mat2 anim_rot_cs[];
 
 out vec4 color_es;
 
 layout(quads, equal_spacing) in;
 
-vec3 bezier_pos(vec2 uv, float cross_width, vec2 c0, vec2 c1, vec2 c2, vec2 c3, vec3 pos, mat2 rot);
+vec2 bezier_pos(vec2 uv, float cross_width, vec2 c0, vec2 c1, vec2 c2, vec2 c3, mat2 rot);
 
 void main() {
   vec2 bezier_param = gl_TessCoord.xy;
   color_es = color_cs[0];
-  gl_Position = vec4(bezier_pos(bezier_param, height_cs[0], c0_cs[0], c1_cs[0], c2_cs[0], c3_cs[0], pos_cs[0], rot_cs[0]), 1.0);
+  vec2 local_pos = bezier_pos(bezier_param, height_cs[0], c0_cs[0], c1_cs[0], c2_cs[0], c3_cs[0], rot_cs[0]);
+  local_pos = anim_pos_cs[0] + anim_rot_cs[0] * (local_pos - anim_pos_cs[0]);
+  gl_Position = vec4(vec3(local_pos.xy, 0.0) + pos_cs[0], 1.0);
   gl_Position = world_view * gl_Position;
 }
 
-vec3 bezier_pos(vec2 uv, float cross_width, vec2 c0, vec2 c1, vec2 c2, vec2 c3, vec3 pos, mat2 rot) {
+vec2 bezier_pos(vec2 uv, float cross_width, vec2 c0, vec2 c1, vec2 c2, vec2 c3, mat2 rot) {
   float t = uv.x;
   vec2 bezier_line_pos =
-    pow(1 - t, 3) * c0
-    + 3 * t * pow(1 - t, 2) * c1
-    + 3 * pow(t, 2) * (1 - t) * c2
+    c0
+    + t * c1
+    + pow(t, 2) * c2
     + pow(t, 3) * c3;
   vec2 derivative =
-    -3 * pow(1 - t, 2) * c0
-    + 3 * pow(1 - t, 2) * c1 - 6 * t * (1 - t) * c1
-    - 3 * pow(t, 2) * c2 + 6 * t * (1 - t) * c2
+    c1
+    + 2 * t * c2
     + 3 * pow(t, 2) * c3;
   vec2 cross_dir = normalize(vec2(-derivative.y, derivative.x));
   float vertical_pos = uv.y - 0.5;
   vec2 local_pos = rot * (bezier_line_pos + vertical_pos * cross_width * cross_dir); 
-  return vec3(local_pos.xy, 0.0) + pos;
+  return local_pos;
 }

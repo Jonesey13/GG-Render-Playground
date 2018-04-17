@@ -7,7 +7,7 @@ use gg::rendering::{PlainText, Rectangle, CirclePart, Polygon, TextureRect};
 pub use self::bezier_rect::{BezierRect, BezierQuadControl};
 pub use self::bezier_branch_rect::BezierBranchRect;
 pub use self::bezier_branch_circ::BezierBranchCirc;
-pub use self::cubic_rect::{CubicRect, BezierCubicControl};
+pub use self::cubic_rect::{CubicRect, BezierCubicControl, PolyCubicControl};
 
 #[derive(Clone)]
 pub enum RenderableTestPrimitive {

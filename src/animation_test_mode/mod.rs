@@ -28,7 +28,8 @@ impl AnimationMode {
     pub fn new(game_settings: GameSettings) -> AnimationMode {
         let animations: Vec<Box<Animatable>> = vec![
             Box::new(PongStretch::new()),
-            Box::new(PongFlip::new())
+            Box::new(PongFlip::new()),
+            Box::new(PongGrab::new())
         ];
 
         AnimationMode {

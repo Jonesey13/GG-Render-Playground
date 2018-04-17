@@ -25,7 +25,19 @@ pub mod pong_flip {
     pub const DIM: [f64; 2] = [0.1, 0.5];
     pub const FLIP_BACK_DIST: f64 = 0.15;
     pub const FLIP_BACK_TIME: f64 = 0.2;
-    pub const FLIP_DURATION: f64 = 0.25;
+    pub const FLIP_DURATION: f64 = 0.35;
+    pub const FLIP_FULCRUM_POS: [f64; 2] = [0.0, -0.125];
+}
+
+pub mod pong_grab {
+    pub const DIM: [f64; 2] = [0.1, 0.5];
+    pub const GRAB_PRE_RADIUS: f64 = 0.2;
+    pub const BALL_START_POS: [f64; 2] = [1.0, 0.0];
+}
+
+pub mod ball {
+    pub const RADIUS: f64 = 0.1;
+    pub const BALL_COLOUR: [f64; 4] = [1.0, 1.0, 1.0, 1.0];
 }
 
 pub mod pong {

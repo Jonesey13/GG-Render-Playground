@@ -88,7 +88,7 @@ impl GameMode for RenderableTestMode {
             four: Vector2::new(0.75, 0.5)
         };
         let cubic_rect = CubicRect::new_with_color(
-            cubic_control, 
+            cubic_control.into(), 
             0.25, 
             Vector3::zero(), 
             Rotation2::new(0.0),

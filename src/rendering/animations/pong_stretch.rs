@@ -57,7 +57,7 @@ impl PongStretch {
         let control = BezierCubicControl::new_linear(start_pos, change);
 
         CubicRect::new_with_color(
-            control, 
+            control.into(), 
             self.current_dim.x, 
             Vector3::zero(), 
             Rotation2::new(0.0), 
