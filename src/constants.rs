@@ -43,3 +43,16 @@ pub mod ball {
 pub mod pong {
     pub const PADDLE_COLOUR: [f64; 4] = [0.2, 0.2, 1.0, 1.0];
 }
+
+pub mod whack_item {
+    pub const DEFAULT_SIZE: f64 = 0.5;
+    pub const THICKNESS: f64 = 0.025;
+    pub const ARROW_ANGLE_DIM: [f64; 2] = [0.2, 1.0];
+    pub const ICON_THICKNESS: f64 = 0.075;
+    pub const ARROW_DIM: [f64; 2] = [0.1, 0.15];
+    pub const SPIKE_SIZE: f64 = 0.1;
+    pub const NUM_SPIKES: usize = 10;
+    pub const ICON_SCALE: f64 = 0.65;
+    pub const BACKGROUND_COLOUR: [f64; 4] = [1.0, 0.4, 0.4, 1.0];
+    pub const FOREGROUND_COLOUR: [f64; 4] = [1.0, 1.0, 1.0, 1.0];
+}

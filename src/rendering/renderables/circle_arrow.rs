@@ -2,7 +2,6 @@ use gg::rendering::{Renderable, Polygon};
 use ::rendering::{GamePrimitive, AnnularSegment, Arrow, Line, ArrowHeadShape};
 use na;
 use na::{Vector2, Vector3, Vector4, Matrix2, Rotation2, convert};
-use gg::rendering::render_by_shaders::GliumStandardPrimitive;
 use gg::rendering::shaders::Shaders;
 use gg::geometry::{Polynomial2d, TwoDTransformable};
 use glium;

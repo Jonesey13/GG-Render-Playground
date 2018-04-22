@@ -3,7 +3,7 @@ use gg::games::GameInput;
 use gg::games::view_details::{ViewDetails2D, ViewDetails};
 use na::{Vector2, Vector3, Vector4, Rotation2};
 use num::{Zero};
-use ::rendering::{SpikyCircle, BezierRect, BezierQuadControl, BezierBranchRect, BezierBranchCirc, CubicRect, BezierCubicControl, CircleArrow};
+use ::rendering::*;
 use gg::rendering::renderables::BoxBorder;
 use gg::rendering::{PlainText, TextAlign, Circle, Annulus, Rectangle, Renderable, Polygon, Arrow, TextureRect};
 use gg::rendering::Line;
@@ -11,6 +11,7 @@ use gg::rendering::WindowSpec;
 use ::rendering::{GamePrimitive, RenderableTestRenderable};
 use ::input::ExternalInput;
 use ::game::GameMode;
+use ::constants;
 
 #[allow(dead_code)]
 #[derive(Default, Clone)]
@@ -190,6 +191,12 @@ impl GameMode for RenderableTestMode {
             0.03, 
             false);
 
+        let whack_item = WhackItem::new(
+            Vector3::new(0.5, 0.5, 0.0),
+            constants::whack_item::DEFAULT_SIZE,
+            0.0
+        );
+
         vec![
         //     Box::new(circ),
         //     Box::new(ann),
@@ -200,8 +207,9 @@ impl GameMode for RenderableTestMode {
             // Box::new(bez_branch_rect), 
             // Box::new(bez_branch_circ),             
             // Box::new(spiky_circ), 
-            Box::new(circ_arrow_clock),
-            Box::new(circ_arrow_anti),
+            // Box::new(circ_arrow_clock),
+            // Box::new(circ_arrow_anti),
+            Box::new(whack_item),
         //     Box::new(line),
             // Box::new(tex_rect1),
             // Box::new(tex_rect2)
