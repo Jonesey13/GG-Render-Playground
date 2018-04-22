@@ -19,5 +19,5 @@ pub enum RenderableTestPrimitive {
     CubicRect(CubicRect),
     BezierBranchRect(BezierBranchRect),
     BezierBranchCirc(BezierBranchCirc),
-    TextureRect(TextureRect)
+    TextureRect(TextureRect),
 }

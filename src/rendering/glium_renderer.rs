@@ -33,7 +33,7 @@ pub struct GliumRenderer<'a> {
     bezier_rect_buffer: BasicBuffer<BezierRect>,
     cubic_rect_buffer: BasicBuffer<CubicRect>,    
     bezier_branch_rect_buffer: BasicBuffer<BezierBranchRect>,
-    bezier_branch_circ_buffer: BasicBuffer<BezierBranchCirc>,    
+    bezier_branch_circ_buffer: BasicBuffer<BezierBranchCirc>,
     text_processor: TextBuffer<'a, PlainText>,
     view_details: view_details::ViewDetails,
     display_settings: DisplaySettings,
@@ -63,7 +63,7 @@ impl<'a> GliumRenderer<'a> {
             bezier_rect_buffer: BasicBuffer::<BezierRect>::new(&display),
             cubic_rect_buffer: BasicBuffer::<CubicRect>::new(&display),
             bezier_branch_rect_buffer: BasicBuffer::<BezierBranchRect>::new(&display),
-            bezier_branch_circ_buffer: BasicBuffer::<BezierBranchCirc>::new(&display),            
+            bezier_branch_circ_buffer: BasicBuffer::<BezierBranchCirc>::new(&display),
             text_processor: TextBuffer::new(&display, settings),
             view_details: view_details::ViewDetails::TwoDim(view_details::ViewDetails2D::default()),
             display_settings: settings,
@@ -77,19 +77,6 @@ impl<'a> GliumRenderer<'a> {
         let context = Self::build_context(settings);
 
         self.display.rebuild(window, context, &self.events_loop).unwrap();
-    }
-
-    fn reset_buffers(&mut self) {
-        let display = &self.display;
-        self.rect_buffer = BasicBuffer::<Rectangle>::new(display);
-        self.texture_rect_buffer = BasicBuffer::<TextureRect>::new(display);
-        self.circ_buffer = BasicBuffer::<CirclePart>::new(display);
-        self.polygon_buffer = BasicBuffer::<Polygon>::new(display);
-        self.bezier_rect_buffer = BasicBuffer::<BezierRect>::new(display);
-        self.cubic_rect_buffer = BasicBuffer::<CubicRect>::new(display);        
-        self.bezier_branch_rect_buffer = BasicBuffer::<BezierBranchRect>::new(display);
-        self.bezier_branch_circ_buffer = BasicBuffer::<BezierBranchCirc>::new(display);                  
-        self.text_processor = TextBuffer::new(display, self.display_settings);
     }
 
     fn build_display_and_events_loop(settings: DisplaySettings) -> (Display, EventsLoop) {
@@ -216,7 +203,7 @@ impl<'a> Renderer for GliumRenderer<'a> {
             self.bezier_rect_buffer.draw_at_target(&mut target, &self.display, self.view_details, &self.draw_params, &uniforms);
             self.cubic_rect_buffer.draw_at_target(&mut target, &self.display, self.view_details, &self.draw_params, &uniforms);            
             self.bezier_branch_rect_buffer.draw_at_target(&mut target, &self.display, self.view_details, &self.draw_params, &uniforms);
-            self.bezier_branch_circ_buffer.draw_at_target(&mut target, &self.display, self.view_details, &self.draw_params, &uniforms);                            
+            self.bezier_branch_circ_buffer.draw_at_target(&mut target, &self.display, self.view_details, &self.draw_params, &uniforms); 
             self.text_processor.draw_at_target(&mut target, &self.display, self.view_details, &self.draw_params, &uniforms);
             
             target.finish().unwrap();

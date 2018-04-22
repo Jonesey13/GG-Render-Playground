@@ -11,9 +11,15 @@ pub mod annulus;
 pub mod annular_segment;
 pub mod box_border;
 pub mod texture_rect;
+pub mod spiky_circle;
+pub mod circle_arrow;
+pub mod arrow;
 
 pub use self::line::{Line, LineShape};
 pub use self::circle::Circle;
 pub use self::annulus::Annulus;
 pub use self::annular_segment::AnnularSegment;
 pub use self::box_border::BoxBorder;
+pub use self::spiky_circle::SpikyCircle;
+pub use self::circle_arrow::CircleArrow;
+pub use self::arrow::*;

@@ -3,7 +3,7 @@ use gg::games::GameInput;
 use gg::games::view_details::{ViewDetails2D, ViewDetails};
 use na::{Vector2, Vector3, Vector4, Rotation2};
 use num::{Zero};
-use ::rendering::{BezierRect, BezierQuadControl, BezierBranchRect, BezierBranchCirc, CubicRect, BezierCubicControl};
+use ::rendering::{SpikyCircle, BezierRect, BezierQuadControl, BezierBranchRect, BezierBranchCirc, CubicRect, BezierCubicControl, CircleArrow};
 use gg::rendering::renderables::BoxBorder;
 use gg::rendering::{PlainText, TextAlign, Circle, Annulus, Rectangle, Renderable, Polygon, Arrow, TextureRect};
 use gg::rendering::Line;
@@ -161,19 +161,50 @@ impl GameMode for RenderableTestMode {
         let box_border_fixed = BoxBorder::new_rounded(0.01, 0.1, Vector3::new(0.0, 0.0, -0.2), 0.5, 0.5, Vector4::new(1.0, 1.0, 0.0, 1.0), true);
         let box_border = BoxBorder::new_rounded(0.01, 0.1, Vector3::new(0.0, 0.0, -0.2), 0.5, 0.5, Vector4::new(1.0, 1.0, 0.0, 1.0), false);        
 
+        let spiky_circ = SpikyCircle::new_with_boundary(
+            Vector3::new(0.5, 0.5, -0.2), 
+            0.2, 
+            0.05, 
+            10, 
+            0.0, 
+            Vector4::new(1.0, 1.0, 0.3, 1.0),
+            0.02,
+            Vector4::new(1.0, 1.0, 1.0, 1.0),
+            false);
+
+        let circ_arrow_clock = CircleArrow::new_clockwise(
+            0.3, 
+            Vector2::new(-0.2, 1.0), 
+            Vector2::new(0.05, 0.08), 
+            Vector3::new(0.0, 0.0, 0.0), 
+            Vector4::new(1.0, 1.0, 1.0, 1.0),
+            0.03, 
+            false);
+
+        let circ_arrow_anti = CircleArrow::new_anticlockwise(
+            0.3, 
+            Vector2::new(0.3, 1.25), 
+            Vector2::new(0.1, 0.1), 
+            Vector3::new(-0.5, 0.5, 0.0), 
+            Vector4::new(1.0, 1.0, 1.0, 1.0),
+            0.03, 
+            false);
+
         vec![
         //     Box::new(circ),
         //     Box::new(ann),
         //     Box::new(text),
         //     Box::new(box_border),
         //     Box::new(box_border_fixed) 
-            Box::new(cubic_rect), 
-            Box::new(bez_branch_rect), 
-            Box::new(bez_branch_circ),             
-        //     Box::new(poly), 
+            // Box::new(cubic_rect), 
+            // Box::new(bez_branch_rect), 
+            // Box::new(bez_branch_circ),             
+            // Box::new(spiky_circ), 
+            Box::new(circ_arrow_clock),
+            Box::new(circ_arrow_anti),
         //     Box::new(line),
-            Box::new(tex_rect1),
-            Box::new(tex_rect2)
+            // Box::new(tex_rect1),
+            // Box::new(tex_rect2)
         ]
     }
 
