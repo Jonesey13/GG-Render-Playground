@@ -1,4 +1,4 @@
-use ::rendering::{Circle, RenderableTestPrimitive, Renderable, Line, LineShape};
+use ::rendering::{Circle, GamePrimitive, Renderable, Line, LineShape};
 use gg::rendering::{Rectangle, Polygon};
 use na::{Vector2, Vector3, Vector4, Rotation2, norm};
 use gg::geometry::{ConPoly, TwoDTransformable};
@@ -120,14 +120,14 @@ impl Arrow {
         shifted_end.y.atan2(shifted_end.x)
     }
 
-    fn generate_arrow_head(&self) -> Vec<RenderableTestPrimitive> {
+    fn generate_arrow_head(&self) -> Vec<GamePrimitive> {
         match self.shape {
             ArrowHeadShape::Flat => self.generate_arrow_head_flat(),
             ArrowHeadShape::RoundedLine => self.generate_arrow_head_rounded()
         }
     }
 
-    fn generate_arrow_head_flat(&self) -> Vec<RenderableTestPrimitive> {
+    fn generate_arrow_head_flat(&self) -> Vec<GamePrimitive> {
         let arrowhead_points = vec![
             Vector2::new(0.0, -self.arrow_dim.y), 
             Vector2::new(self.arrow_dim.x, 0.0),
@@ -147,7 +147,7 @@ impl Arrow {
         arrowhead.get_primitives()
     }
 
-    pub fn generate_arrow_head_rounded(&self) -> Vec<RenderableTestPrimitive> {
+    pub fn generate_arrow_head_rounded(&self) -> Vec<GamePrimitive> {
         let arrowhead_points = vec![
             Vector2::new(0.0, -self.arrow_dim.y), 
             Vector2::new(self.arrow_dim.x, 0.0),
@@ -182,14 +182,14 @@ impl Arrow {
             self.depth, 
             self.fixed);
 
-        let mut output: Vec<RenderableTestPrimitive> = left_line_renderable.get_primitives();
+        let mut output: Vec<GamePrimitive> = left_line_renderable.get_primitives();
         output.append(&mut right_line_renderable.get_primitives());
         output
     }
 }
 
-impl Renderable<RenderableTestPrimitive> for Arrow {
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> { 
+impl Renderable<GamePrimitive> for Arrow {
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> { 
         let full_length = self.get_length();
         let center_line = geometry::Line::new(self.start, self.end);
 
@@ -213,7 +213,7 @@ impl Renderable<RenderableTestPrimitive> for Arrow {
             self.fixed
         );
 
-        let mut output: Vec<RenderableTestPrimitive> = root_line.get_primitives();
+        let mut output: Vec<GamePrimitive> = root_line.get_primitives();
         output.append(&mut self.generate_arrow_head());
         output
     }

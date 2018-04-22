@@ -8,7 +8,7 @@ use ::rendering::primitives::{BezierBranchRect, BezierBranchCirc, CubicRect};
 use ::rendering::RenderableTestRenderable;
 use gg::rendering::DisplaySettings;
 use gg::rendering::glium_buffer::{GliumBuffer, BasicBuffer};
-use ::rendering::{BezierRect, RenderableTestPrimitive};
+use ::rendering::{BezierRect, GamePrimitive};
 use gg::rendering::WindowSpec;
 use glium;
 use glium::{Display, Surface, DrawParameters, Depth, DepthTest};
@@ -156,22 +156,22 @@ impl<'a> GliumRenderer<'a> {
 }
 
 impl<'a> Renderer for GliumRenderer<'a> {
-    type Primitive = RenderableTestPrimitive;
+    type Primitive = GamePrimitive;
 
     fn load_renderables(&mut self, renderables: Vec<Box<RenderableTestRenderable>>) {
         debug_clock_start("Render::glium_load");
         for mut renderable in renderables {
             for primitive in renderable.get_primitives() {
                 match primitive {
-                        RenderableTestPrimitive::Rect(rectangle) => self.rect_buffer.load_renderable(rectangle),
-                        RenderableTestPrimitive::Circ(circle) => self.circ_buffer.load_renderable(circle),
-                        RenderableTestPrimitive::Text(text) => self.text_processor.load_renderable(text),
-                        RenderableTestPrimitive::BezierRect(bezier_rect) => self.bezier_rect_buffer.load_renderable(bezier_rect),
-                        RenderableTestPrimitive::CubicRect(bezier_rect) => self.cubic_rect_buffer.load_renderable(bezier_rect),                        
-                        RenderableTestPrimitive::BezierBranchRect(bezier_branch_rect) => self.bezier_branch_rect_buffer.load_renderable(bezier_branch_rect),                        
-                        RenderableTestPrimitive::BezierBranchCirc(bezier_branch_circ) => self.bezier_branch_circ_buffer.load_renderable(bezier_branch_circ),                          
-                        RenderableTestPrimitive::Poly(polygon) => self.polygon_buffer.load_renderable(polygon),
-                        RenderableTestPrimitive::TextureRect(rect) => self.texture_rect_buffer.load_renderable(rect),
+                        GamePrimitive::Rect(rectangle) => self.rect_buffer.load_renderable(rectangle),
+                        GamePrimitive::Circ(circle) => self.circ_buffer.load_renderable(circle),
+                        GamePrimitive::Text(text) => self.text_processor.load_renderable(text),
+                        GamePrimitive::BezierRect(bezier_rect) => self.bezier_rect_buffer.load_renderable(bezier_rect),
+                        GamePrimitive::CubicRect(bezier_rect) => self.cubic_rect_buffer.load_renderable(bezier_rect),                        
+                        GamePrimitive::BezierBranchRect(bezier_branch_rect) => self.bezier_branch_rect_buffer.load_renderable(bezier_branch_rect),                        
+                        GamePrimitive::BezierBranchCirc(bezier_branch_circ) => self.bezier_branch_circ_buffer.load_renderable(bezier_branch_circ),                          
+                        GamePrimitive::Poly(polygon) => self.polygon_buffer.load_renderable(polygon),
+                        GamePrimitive::TextureRect(rect) => self.texture_rect_buffer.load_renderable(rect),
                 }
             }
         }

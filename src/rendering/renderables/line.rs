@@ -1,5 +1,5 @@
 use gg::rendering::{Rectangle, Circle, Renderable};
-use ::rendering::RenderableTestPrimitive;
+use ::rendering::GamePrimitive;
 use na::{Vector2, Vector3, Vector4, Rotation2};
 
 #[derive(Clone, Debug)]
@@ -79,8 +79,8 @@ pub enum LineShape {
     Rounded
 }
 
-impl Renderable<RenderableTestPrimitive> for Line {
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> { 
+impl Renderable<GamePrimitive> for Line {
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> { 
         let shifted_end = self.end - self.start;
         let line_angle = shifted_end.y.atan2(shifted_end.x);
         let midpoint = (self.start + self.end) / 2.0;
@@ -95,7 +95,7 @@ impl Renderable<RenderableTestPrimitive> for Line {
         };
 
         match self.shape {
-            LineShape::Square => return vec![RenderableTestPrimitive::Rect(line_middle)],
+            LineShape::Square => return vec![GamePrimitive::Rect(line_middle)],
             LineShape::Rounded => {
                 let beg_circ = Circle {
                     radius: self.thickness / 2.0,
@@ -110,7 +110,7 @@ impl Renderable<RenderableTestPrimitive> for Line {
                     color: self.color,
                     fixed: self.fixed
                 };
-                return vec![RenderableTestPrimitive::Circ(beg_circ.into()), RenderableTestPrimitive::Circ(end_circ.into()), RenderableTestPrimitive::Rect(line_middle)]
+                return vec![GamePrimitive::Circ(beg_circ.into()), GamePrimitive::Circ(end_circ.into()), GamePrimitive::Rect(line_middle)]
             }
         }
     }

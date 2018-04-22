@@ -1,5 +1,5 @@
-use ::rendering::{Renderable, BezierBranchCirc, RenderableTestPrimitive};
+use ::rendering::{Renderable, BezierBranchCirc, GamePrimitive};
 
-impl Renderable<RenderableTestPrimitive> for BezierBranchCirc {
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> { vec![RenderableTestPrimitive::BezierBranchCirc(self.clone())] }
+impl Renderable<GamePrimitive> for BezierBranchCirc {
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> { vec![GamePrimitive::BezierBranchCirc(self.clone())] }
 }

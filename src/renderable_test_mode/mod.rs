@@ -8,7 +8,7 @@ use gg::rendering::renderables::BoxBorder;
 use gg::rendering::{PlainText, TextAlign, Circle, Annulus, Rectangle, Renderable, Polygon, Arrow, TextureRect};
 use gg::rendering::Line;
 use gg::rendering::WindowSpec;
-use ::rendering::{RenderableTestPrimitive, RenderableTestRenderable};
+use ::rendering::{GamePrimitive, RenderableTestRenderable};
 use ::input::ExternalInput;
 use ::game::GameMode;
 

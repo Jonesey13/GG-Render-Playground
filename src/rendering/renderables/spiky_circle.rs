@@ -1,5 +1,5 @@
 use gg::rendering::{Renderable, Polygon};
-use ::rendering::{RenderableTestPrimitive, Line};
+use ::rendering::{GamePrimitive, Line};
 use na;
 use na::{Vector2, Vector3, Vector4, Matrix2, Rotation2, convert};
 use gg::rendering::render_by_shaders::GliumStandardPrimitive;
@@ -146,15 +146,15 @@ impl SpikyCircle {
     }
 }
 
-impl Renderable<RenderableTestPrimitive> for SpikyCircle {
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> { 
-        let mut output: Vec<RenderableTestPrimitive> = self.get_spikes()
+impl Renderable<GamePrimitive> for SpikyCircle {
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> { 
+        let mut output: Vec<GamePrimitive> = self.get_spikes()
         .into_iter()
         .flat_map(|mut spike| {spike.get_primitives()})
         .collect();
 
         if self.has_boundary {
-            let mut lines: Vec<RenderableTestPrimitive> = self.get_lines()
+            let mut lines: Vec<GamePrimitive> = self.get_lines()
                 .into_iter()
                 .flat_map(|mut line| {line.get_primitives()})
                 .collect();

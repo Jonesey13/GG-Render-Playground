@@ -1,6 +1,6 @@
 use na::{Vector2, Vector3, Vector4};
 use gg::rendering::{Renderable, Rectangle, AnnularSegment};
-use ::rendering::RenderableTestPrimitive;
+use ::rendering::GamePrimitive;
 
 #[derive(Clone, Debug)]
 pub struct BoxBorder {
@@ -51,7 +51,7 @@ impl BoxBorder {
         }
     }
 
-    fn get_straight_primitives(&self) -> Vec<RenderableTestPrimitive> {
+    fn get_straight_primitives(&self) -> Vec<GamePrimitive> {
         let left_pos = self.pos - self.rect_width / 2.0 * Vector3::x();
         let right_pos = self.pos + self.rect_width / 2.0 * Vector3::x();
         let lower_pos = self.pos - self.rect_height / 2.0 * Vector3::y();
@@ -64,13 +64,13 @@ impl BoxBorder {
         let lower_wall = Rectangle::new_regular(full_width, self.thickness, lower_pos, self.color, self.fixed);
         let upper_wall = Rectangle::new_regular(full_width, self.thickness, upper_pos, self.color, self.fixed);        
         
-        vec![RenderableTestPrimitive::Rect(left_wall), 
-        RenderableTestPrimitive::Rect(right_wall), 
-        RenderableTestPrimitive::Rect(lower_wall), 
-        RenderableTestPrimitive::Rect(upper_wall)]
+        vec![GamePrimitive::Rect(left_wall), 
+        GamePrimitive::Rect(right_wall), 
+        GamePrimitive::Rect(lower_wall), 
+        GamePrimitive::Rect(upper_wall)]
     }
 
-    fn get_rounded_primitives(&self, border_radius: f64) -> Vec<RenderableTestPrimitive> {
+    fn get_rounded_primitives(&self, border_radius: f64) -> Vec<GamePrimitive> {
         let x_shift = self.rect_width / 2.0 * Vector3::x();
         let y_shift = self.rect_height / 2.0 * Vector3::y();
         let x_radius_shift = border_radius * Vector3::x();
@@ -98,19 +98,19 @@ impl BoxBorder {
         let lower_right_circ = AnnularSegment::new(corner_radial_dim, Vector2::new(0.25, 0.5), lower_right_pos, self.color, self.fixed);
         let lower_left_circ = AnnularSegment::new(corner_radial_dim, Vector2::new(0.5, 0.75), lower_left_pos, self.color, self.fixed);
         
-        vec![RenderableTestPrimitive::Rect(left_wall), 
-        RenderableTestPrimitive::Rect(right_wall), 
-        RenderableTestPrimitive::Rect(lower_wall), 
-        RenderableTestPrimitive::Rect(upper_wall),
-        RenderableTestPrimitive::Circ(upper_left_circ.into()),
-        RenderableTestPrimitive::Circ(upper_right_circ.into()),
-        RenderableTestPrimitive::Circ(lower_right_circ.into()),
-        RenderableTestPrimitive::Circ(lower_left_circ.into())]
+        vec![GamePrimitive::Rect(left_wall), 
+        GamePrimitive::Rect(right_wall), 
+        GamePrimitive::Rect(lower_wall), 
+        GamePrimitive::Rect(upper_wall),
+        GamePrimitive::Circ(upper_left_circ.into()),
+        GamePrimitive::Circ(upper_right_circ.into()),
+        GamePrimitive::Circ(lower_right_circ.into()),
+        GamePrimitive::Circ(lower_left_circ.into())]
     }
 }
 
-impl Renderable<RenderableTestPrimitive> for BoxBorder {
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> {
+impl Renderable<GamePrimitive> for BoxBorder {
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> {
         match self.border_type {
             BorderType::Straight => self.get_straight_primitives(),
             BorderType::Round(radius) => self.get_rounded_primitives(radius)

@@ -7,7 +7,7 @@ use gg::rendering::renderables::BoxBorder;
 use gg::rendering::{PlainText, TextAlign, Circle, Annulus, Rectangle, Renderable, Polygon, Arrow, TextureRect};
 use gg::rendering::{WindowSpec, DisplaySettings};
 use gg::games::view_details;
-use ::rendering::{RenderableTestPrimitive, RenderableTestRenderable};
+use ::rendering::{GamePrimitive, RenderableTestRenderable};
 use ::common::{GameSettings};
 use ::main_menu_mode::MainMenuMode;
 
@@ -46,7 +46,7 @@ impl RenderableTestGame {
 }
 
 impl Game for RenderableTestGame {
-    type Primitive = RenderableTestPrimitive;
+    type Primitive = GamePrimitive;
 
     fn update_input(&mut self) {
         self.get_mode_mut().update_input()

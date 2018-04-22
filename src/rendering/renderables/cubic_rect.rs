@@ -1,6 +1,6 @@
 use gg::rendering::{Renderable};
-use ::rendering::{RenderableTestPrimitive, CubicRect};
+use ::rendering::{GamePrimitive, CubicRect};
 
-impl Renderable<RenderableTestPrimitive> for CubicRect {
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> { vec![RenderableTestPrimitive::CubicRect(self.clone())] }
+impl Renderable<GamePrimitive> for CubicRect {
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> { vec![GamePrimitive::CubicRect(self.clone())] }
 }

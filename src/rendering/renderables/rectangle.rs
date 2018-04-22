@@ -1,6 +1,6 @@
 use gg::rendering::{Renderable, Rectangle};
-use ::rendering::RenderableTestPrimitive;
+use ::rendering::GamePrimitive;
 
-impl Renderable<RenderableTestPrimitive> for Rectangle {
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> { vec![RenderableTestPrimitive::Rect(self.clone())] }
+impl Renderable<GamePrimitive> for Rectangle {
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> { vec![GamePrimitive::Rect(self.clone())] }
 }

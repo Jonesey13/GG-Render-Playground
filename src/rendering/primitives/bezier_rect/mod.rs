@@ -60,7 +60,7 @@ impl BezierRect {
         }
     }
 
-    /// Intended for Other Bezier RenderableTestPrimitive Types
+    /// Intended for Other Bezier GamePrimitive Types
     pub fn new (
         control_points: BezierQuadControl,
         height: f64,

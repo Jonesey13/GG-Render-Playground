@@ -1,6 +1,6 @@
-use ::rendering::{RenderableTestPrimitive};
+use ::rendering::{GamePrimitive};
 use gg::rendering::{Renderable, Polygon};
 
-impl Renderable<RenderableTestPrimitive> for Polygon {
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> { vec![RenderableTestPrimitive::Poly(self.clone())] }
+impl Renderable<GamePrimitive> for Polygon {
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> { vec![GamePrimitive::Poly(self.clone())] }
 }

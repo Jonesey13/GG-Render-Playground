@@ -14,7 +14,7 @@ extern crate rusttype;
 use gg::debug::*;
 use gg::{debug, window, handler_basic, games, Handler};
 use gg::rendering::{DisplaySettings};
-use ::rendering::RenderableTestPrimitive;
+use ::rendering::GamePrimitive;
 use std::env;
 use std::io::*;
 mod game;
@@ -51,7 +51,7 @@ fn main() {
     let input_handler: Box<gg::input::InputHandler> = Box::new(gg::input::multihandler::MultiInput::new());
     let window_handler: Box<window::WindowHandler> = Box::new(window::GlutinInput::new());
 
-    let game: Box<games::Game<Primitive=RenderableTestPrimitive>> = Box::new(game::RenderableTestGame::new(display_settings));
+    let game: Box<games::Game<Primitive=GamePrimitive>> = Box::new(game::RenderableTestGame::new(display_settings));
     let mut handler: Box<Handler> = Box::new(handler_basic::HandlerBasic::new(renderer, input_handler, window_handler, game));
 
     handler.init();

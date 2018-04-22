@@ -1,6 +1,6 @@
-use ::rendering::{RenderableTestPrimitive};
+use ::rendering::{GamePrimitive};
 use gg::rendering::{TextureRect, Renderable};
 
-impl Renderable<RenderableTestPrimitive> for TextureRect {
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> { vec![RenderableTestPrimitive::TextureRect(self.clone())] }
+impl Renderable<GamePrimitive> for TextureRect {
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> { vec![GamePrimitive::TextureRect(self.clone())] }
 }

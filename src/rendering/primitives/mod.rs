@@ -10,7 +10,7 @@ pub use self::bezier_branch_circ::BezierBranchCirc;
 pub use self::cubic_rect::{CubicRect, BezierCubicControl, PolyCubicControl};
 
 #[derive(Clone)]
-pub enum RenderableTestPrimitive {
+pub enum GamePrimitive {
     Rect(Rectangle),
     Circ(CirclePart),
     Poly(Polygon),

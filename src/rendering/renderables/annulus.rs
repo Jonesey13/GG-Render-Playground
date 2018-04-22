@@ -1,5 +1,5 @@
 use gg::rendering::{Renderable, CirclePart};
-use ::rendering::RenderableTestPrimitive;
+use ::rendering::GamePrimitive;
 use na::{Vector2, Vector3, Vector4};
 
 #[derive(Clone, Debug)]
@@ -32,8 +32,8 @@ impl Annulus {
     }
 }
 
-impl Renderable<RenderableTestPrimitive> for Annulus {
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> { vec![RenderableTestPrimitive::Circ(self.clone().into())] }
+impl Renderable<GamePrimitive> for Annulus {
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> { vec![GamePrimitive::Circ(self.clone().into())] }
 }
 
 impl From<Annulus> for CirclePart {

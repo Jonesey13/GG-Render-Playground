@@ -155,7 +155,7 @@ impl CubicRect {
         }
     }
 
-    /// Intended for Other Bezier RenderableTestPrimitive Types
+    /// Intended for Other Bezier GamePrimitive Types
     pub fn new (
         control_points: PolyCubicControl,
         height: f64,

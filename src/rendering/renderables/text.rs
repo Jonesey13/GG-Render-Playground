@@ -1,6 +1,6 @@
-use ::rendering::RenderableTestPrimitive;
+use ::rendering::GamePrimitive;
 use gg::rendering::{Renderable, PlainText};
 
-impl Renderable<RenderableTestPrimitive> for PlainText {    
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> { vec![RenderableTestPrimitive::Text(self.clone())] }
+impl Renderable<GamePrimitive> for PlainText {    
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> { vec![GamePrimitive::Text(self.clone())] }
 }

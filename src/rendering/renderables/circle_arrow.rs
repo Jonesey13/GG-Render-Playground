@@ -1,5 +1,5 @@
 use gg::rendering::{Renderable, Polygon};
-use ::rendering::{RenderableTestPrimitive, AnnularSegment, Arrow, Line, ArrowHeadShape};
+use ::rendering::{GamePrimitive, AnnularSegment, Arrow, Line, ArrowHeadShape};
 use na;
 use na::{Vector2, Vector3, Vector4, Matrix2, Rotation2, convert};
 use gg::rendering::render_by_shaders::GliumStandardPrimitive;
@@ -80,14 +80,14 @@ impl CircleArrow{
         )
     }
 
-    fn generate_arrow_head(&self) -> Vec<RenderableTestPrimitive> {
+    fn generate_arrow_head(&self) -> Vec<GamePrimitive> {
         match self.head_shape {
             ArrowHeadShape::Flat => panic!("Unimplemented!"),
             ArrowHeadShape::RoundedLine => self.generate_arrow_head_rounded()
         }
     }
 
-    pub fn generate_arrow_head_rounded(&self) -> Vec<RenderableTestPrimitive> {
+    pub fn generate_arrow_head_rounded(&self) -> Vec<GamePrimitive> {
         let arrowhead_points = vec![
             Vector2::new(-self.arrow_dim.x + self.thickness / 2.0, -self.arrow_dim.y), 
             Vector2::new(self.thickness / 2.0, 0.0),
@@ -130,15 +130,15 @@ impl CircleArrow{
             self.pos.z, 
             self.fixed);
 
-        let mut output: Vec<RenderableTestPrimitive> = left_line_renderable.get_primitives();
+        let mut output: Vec<GamePrimitive> = left_line_renderable.get_primitives();
         output.append(&mut right_line_renderable.get_primitives());
         output
     }
 }
 
-impl Renderable<RenderableTestPrimitive> for CircleArrow {
-    fn get_primitives(&mut self) -> Vec<RenderableTestPrimitive> { 
-        let mut output: Vec<RenderableTestPrimitive> = self.get_circ_line().get_primitives();
+impl Renderable<GamePrimitive> for CircleArrow {
+    fn get_primitives(&mut self) -> Vec<GamePrimitive> { 
+        let mut output: Vec<GamePrimitive> = self.get_circ_line().get_primitives();
         output.append(&mut self.generate_arrow_head());
         output
     }
