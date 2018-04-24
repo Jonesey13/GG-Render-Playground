@@ -15,6 +15,7 @@ pub mod spiky_circle;
 pub mod circle_arrow;
 pub mod arrow;
 pub mod whack_item;
+pub mod stretch_item;
 
 pub use self::line::{Line, LineShape};
 pub use self::circle::Circle;
@@ -25,3 +26,4 @@ pub use self::spiky_circle::SpikyCircle;
 pub use self::circle_arrow::CircleArrow;
 pub use self::arrow::*;
 pub use self::whack_item::*;
+pub use self::stretch_item::*;

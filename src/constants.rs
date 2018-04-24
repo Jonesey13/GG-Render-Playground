@@ -56,3 +56,16 @@ pub mod whack_item {
     pub const BACKGROUND_COLOUR: [f64; 4] = [1.0, 0.4, 0.4, 1.0];
     pub const FOREGROUND_COLOUR: [f64; 4] = [1.0, 1.0, 1.0, 1.0];
 }
+
+pub mod stretch_item {
+    pub const DEFAULT_SIZE: f64 = 0.5;
+    pub const RECT_WIDTH: f64 = 0.4;
+    pub const THICKNESS: f64 = 0.025;
+    pub const ARROW_THICKNESS: f64 = 0.075;
+    pub const ARROW_DIM: [f64; 2] = [0.1, 0.15];
+    pub const ARROW_LENGTH: f64 = 1.0;
+    pub const ARROW_WIDTH: f64 = 0.3;
+    pub const ARROW_SCALE: f64 = 0.7;
+    pub const BACKGROUND_COLOUR: [f64; 4] = [1.0, 0.4, 0.4, 1.0];
+    pub const FOREGROUND_COLOUR: [f64; 4] = [1.0, 1.0, 1.0, 1.0];
+}

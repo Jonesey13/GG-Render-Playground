@@ -1,10 +1,10 @@
 [package]
-name = "gg_renderable_test"
+name = "gg_render_playground"
 version = "0.1.0"
 authors = ["Alex Jones <alexander.jones@softwire.com>"]
 
 [dependencies]
-generic_game = { path="C:/Users/Jonesey13/projects/generic_game" }
+generic_game = { path="C:/Users/ADJ/Projects/generic_game" }
 nalgebra = "*"
 num = "*"
 time = "*"
