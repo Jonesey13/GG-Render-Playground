@@ -302,7 +302,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "gg_renderable_test"
+name = "gg_render_playground"
 version = "0.1.0"
 dependencies = [
  "generic_game 0.0.2",

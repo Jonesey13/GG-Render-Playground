@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Alex Jones <alexander.jones@softwire.com>"]
 
 [dependencies]
-generic_game = { path="C:/Users/ADJ/Projects/generic_game" }
+generic_game = { path="C:/Users/Jonesey13/Projects/generic_game" }
 nalgebra = "*"
 num = "*"
 time = "*"

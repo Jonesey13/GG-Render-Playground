@@ -194,7 +194,13 @@ impl GameMode for RenderableTestMode {
         let whack_item = WhackItem::new(
             Vector3::new(0.5, 0.5, 0.0),
             constants::whack_item::DEFAULT_SIZE,
-            0.0
+            0.2
+        );
+
+        let stretch_item = StretchItem::new(
+            Vector3::new(-0.5, -0.5, 0.0),
+            constants::whack_item::DEFAULT_SIZE,
+            -0.2
         );
 
         vec![
@@ -210,7 +216,7 @@ impl GameMode for RenderableTestMode {
             // Box::new(circ_arrow_clock),
             // Box::new(circ_arrow_anti),
             Box::new(whack_item),
-        //     Box::new(line),
+            Box::new(stretch_item),
             // Box::new(tex_rect1),
             // Box::new(tex_rect2)
         ]
