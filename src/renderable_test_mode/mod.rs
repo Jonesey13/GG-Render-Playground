@@ -203,6 +203,12 @@ impl GameMode for RenderableTestMode {
             -0.2
         );
 
+        let grab_item = GrabItem::new(
+            Vector3::new(0.5, -0.5, 0.0),
+            constants::grab_item::DEFAULT_SIZE,
+            -0.2
+        );
+
         vec![
         //     Box::new(circ),
         //     Box::new(ann),
@@ -217,6 +223,7 @@ impl GameMode for RenderableTestMode {
             // Box::new(circ_arrow_anti),
             Box::new(whack_item),
             Box::new(stretch_item),
+            Box::new(grab_item),
             // Box::new(tex_rect1),
             // Box::new(tex_rect2)
         ]

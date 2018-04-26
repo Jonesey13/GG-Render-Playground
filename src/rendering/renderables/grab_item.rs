@@ -41,8 +41,18 @@ impl GrabItem {
             false
         );
 
+        let outer_circle = AnnularSegment::new(
+            Vector2::new(self.scale * (constants::grab_item::GRAB_RADIUS - constants::grab_item::THICKNESS), 
+                        self.scale * constants::grab_item::GRAB_RADIUS),
+            angular_dim.into(),
+            self.pos,
+            self.select_color,
+            false
+        );
+
         vec![
-            GamePrimitive::Circ(background.into())
+            GamePrimitive::Circ(background.into()),
+            GamePrimitive::Circ(outer_circle.into())
         ]
     }
 
