@@ -1,6 +1,6 @@
 use ::animation::{AnimationSpec, Animatable, AnimationWindow, AnimationFunctionEnum, AnimationType};
 use na::{Vector2, Vector3, Vector4, Rotation2};
-use ::rendering::{RenderableTestRenderable, CubicRect, BezierCubicControl};
+use ::rendering::{RenderableTestRenderable, PaddleRect, BezierCubicControl};
 use ::constants;
 use num::Zero;
 
@@ -51,12 +51,12 @@ impl PongStretch {
         };
     }
 
-    fn get_cubic(&self) -> CubicRect {
+    fn get_cubic(&self) -> PaddleRect {
         let start_pos = Vector2::new(0.0, -self.current_dim.y / 2.0);
         let change = Vector2::new(0.0, self.current_dim.y);
         let control = BezierCubicControl::new_linear(start_pos, change);
 
-        CubicRect::new_with_color(
+        PaddleRect::new_with_color(
             control.into(), 
             self.current_dim.x, 
             Vector3::zero(), 

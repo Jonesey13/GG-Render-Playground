@@ -1,5 +1,5 @@
 pub mod bezier_rect;
-pub mod cubic_rect;
+pub mod paddle_rect;
 pub mod bezier_branch_rect;
 pub mod bezier_branch_circ;
 pub mod circle;
@@ -16,6 +16,7 @@ pub mod circle_arrow;
 pub mod arrow;
 pub mod whack_item;
 pub mod stretch_item;
+pub mod grab_item;
 
 pub use self::line::{Line, LineShape};
 pub use self::circle::Circle;
@@ -27,3 +28,4 @@ pub use self::circle_arrow::CircleArrow;
 pub use self::arrow::*;
 pub use self::whack_item::*;
 pub use self::stretch_item::*;
+pub use self::grab_item::*;

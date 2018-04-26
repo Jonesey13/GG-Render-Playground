@@ -1,6 +1,6 @@
 use ::animation::{AnimationSpec, Animatable, AnimationWindow, AnimationFunctionEnum, AnimationType};
 use na::{Vector2, Vector3, Vector4, Rotation2};
-use ::rendering::{RenderableTestRenderable, CubicRect, BezierCubicControl, PolyCubicControl, Circle};
+use ::rendering::{RenderableTestRenderable, PaddleRect, BezierCubicControl, PolyCubicControl, Circle};
 use ::constants;
 use num::Zero;
 use std::f64::consts::PI;
@@ -43,8 +43,8 @@ impl PongGrab {
         AnimationSpec::new(vec![approach_window, hold_window, release_window], AnimationType::Linear)
     }
 
-    fn get_cubic(&self) -> CubicRect {
-        CubicRect::new_with_color(
+    fn get_cubic(&self) -> PaddleRect {
+        PaddleRect::new_with_color(
             self.get_control(), 
             self.dim.x, 
             Vector3::zero(), 

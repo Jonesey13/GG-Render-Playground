@@ -4,7 +4,7 @@ use gg::rendering::primitives::circle_part::{CirclePart};
 use gg::rendering::primitives::polygon::{Polygon};
 use gg::rendering::primitives::text::{TextBuffer, PlainText};
 use gg::rendering::primitives::{TextureRect}; 
-use ::rendering::primitives::{BezierBranchRect, BezierBranchCirc, CubicRect};
+use ::rendering::primitives::{BezierBranchRect, BezierBranchCirc, PaddleRect};
 use ::rendering::RenderableTestRenderable;
 use gg::rendering::DisplaySettings;
 use gg::rendering::glium_buffer::{GliumBuffer, BasicBuffer};
@@ -31,7 +31,7 @@ pub struct GliumRenderer<'a> {
     circ_buffer: BasicBuffer<CirclePart>,
     polygon_buffer: BasicBuffer<Polygon>,
     bezier_rect_buffer: BasicBuffer<BezierRect>,
-    cubic_rect_buffer: BasicBuffer<CubicRect>,    
+    cubic_rect_buffer: BasicBuffer<PaddleRect>,    
     bezier_branch_rect_buffer: BasicBuffer<BezierBranchRect>,
     bezier_branch_circ_buffer: BasicBuffer<BezierBranchCirc>,
     text_processor: TextBuffer<'a, PlainText>,
@@ -61,7 +61,7 @@ impl<'a> GliumRenderer<'a> {
             circ_buffer: BasicBuffer::<CirclePart>::new(&display),
             polygon_buffer: BasicBuffer::<Polygon>::new(&display),
             bezier_rect_buffer: BasicBuffer::<BezierRect>::new(&display),
-            cubic_rect_buffer: BasicBuffer::<CubicRect>::new(&display),
+            cubic_rect_buffer: BasicBuffer::<PaddleRect>::new(&display),
             bezier_branch_rect_buffer: BasicBuffer::<BezierBranchRect>::new(&display),
             bezier_branch_circ_buffer: BasicBuffer::<BezierBranchCirc>::new(&display),
             text_processor: TextBuffer::new(&display, settings),
@@ -167,7 +167,7 @@ impl<'a> Renderer for GliumRenderer<'a> {
                         GamePrimitive::Circ(circle) => self.circ_buffer.load_renderable(circle),
                         GamePrimitive::Text(text) => self.text_processor.load_renderable(text),
                         GamePrimitive::BezierRect(bezier_rect) => self.bezier_rect_buffer.load_renderable(bezier_rect),
-                        GamePrimitive::CubicRect(bezier_rect) => self.cubic_rect_buffer.load_renderable(bezier_rect),                        
+                        GamePrimitive::PaddleRect(bezier_rect) => self.cubic_rect_buffer.load_renderable(bezier_rect),                        
                         GamePrimitive::BezierBranchRect(bezier_branch_rect) => self.bezier_branch_rect_buffer.load_renderable(bezier_branch_rect),                        
                         GamePrimitive::BezierBranchCirc(bezier_branch_circ) => self.bezier_branch_circ_buffer.load_renderable(bezier_branch_circ),                          
                         GamePrimitive::Poly(polygon) => self.polygon_buffer.load_renderable(polygon),

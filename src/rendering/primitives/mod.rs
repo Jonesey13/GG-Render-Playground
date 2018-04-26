@@ -1,13 +1,13 @@
 pub mod bezier_rect;
 pub mod bezier_branch_rect;
 pub mod bezier_branch_circ;
-pub mod cubic_rect;
+pub mod paddle_rect;
 use gg::rendering::{PlainText, Rectangle, CirclePart, Polygon, TextureRect};
 
 pub use self::bezier_rect::{BezierRect, BezierQuadControl};
 pub use self::bezier_branch_rect::BezierBranchRect;
 pub use self::bezier_branch_circ::BezierBranchCirc;
-pub use self::cubic_rect::{CubicRect, BezierCubicControl, PolyCubicControl};
+pub use self::paddle_rect::{PaddleRect, BezierCubicControl, PolyCubicControl};
 
 #[derive(Clone)]
 pub enum GamePrimitive {
@@ -16,7 +16,7 @@ pub enum GamePrimitive {
     Poly(Polygon),
     Text(PlainText),
     BezierRect(BezierRect),
-    CubicRect(CubicRect),
+    PaddleRect(PaddleRect),
     BezierBranchRect(BezierBranchRect),
     BezierBranchCirc(BezierBranchCirc),
     TextureRect(TextureRect),

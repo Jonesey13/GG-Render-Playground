@@ -67,3 +67,13 @@ pub mod stretch_item {
     pub const BACKGROUND_COLOUR: [f64; 4] = [0.4, 0.4, 1.0, 1.0];
     pub const FOREGROUND_COLOUR: [f64; 4] = [1.0, 1.0, 1.0, 1.0];
 }
+
+pub mod grab_item {
+    pub const DEFAULT_SIZE: f64 = 0.5;
+    pub const PADDLE_DIM: [f64; 2] = [0.1, 0.5];
+    pub const GRAB_RADIUS: f64 = 2.0;
+    pub const GRAB_ANGLES: [f64; 2] = [0.125, 0.875];
+    pub const THICKNESS: f64 = 0.025;
+    pub const BACKGROUND_COLOUR: [f64; 4] = [0.4, 0.4, 1.0, 1.0];
+    pub const FOREGROUND_COLOUR: [f64; 4] = [1.0, 1.0, 1.0, 1.0];
+}

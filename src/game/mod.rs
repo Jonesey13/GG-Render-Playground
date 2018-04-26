@@ -2,7 +2,7 @@ use gg::games::Game;
 use gg::games::GameInput;
 use gg::games::view_details::{ViewDetails2D, ViewDetails};
 use na::{Vector2, Vector3, Vector4, Rotation2};
-use ::rendering::{BezierRect, BezierQuadControl, BezierBranchRect, BezierBranchCirc, CubicRect, BezierCubicControl};
+use ::rendering::{BezierRect, BezierQuadControl, BezierBranchRect, BezierBranchCirc, PaddleRect, BezierCubicControl};
 use gg::rendering::renderables::BoxBorder;
 use gg::rendering::{PlainText, TextAlign, Circle, Annulus, Rectangle, Renderable, Polygon, Arrow, TextureRect};
 use gg::rendering::{WindowSpec, DisplaySettings};

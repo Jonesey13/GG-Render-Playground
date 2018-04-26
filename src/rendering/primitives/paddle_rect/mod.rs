@@ -7,7 +7,7 @@ use glium;
 use num::Zero;
 
 #[derive(Copy, Clone, Debug)]
-pub struct CubicRect {
+pub struct PaddleRect {
     pub control: PolyCubicControl,
     pub height: f64,
     pub pos: Vector3<f64>,
@@ -111,7 +111,7 @@ impl From<Polynomial2d> for PolyCubicControl {
     }
 }
 
-impl CubicRect {
+impl PaddleRect {
     /// Intended for Standalone use
     pub fn new_with_color (
         control_points: PolyCubicControl,
@@ -120,8 +120,8 @@ impl CubicRect {
         rot: Rotation2<f64>,
         color: Vector4<f64>,
         detail_level: usize
-    ) -> CubicRect {
-        CubicRect { 
+    ) -> PaddleRect {
+        PaddleRect { 
             control: control_points,
             height: height,
             pos: pos,
@@ -142,8 +142,8 @@ impl CubicRect {
         detail_level: usize,
         anim_pos: Vector2<f64>,
         anim_rot_angle: f64
-    ) -> CubicRect {
-        CubicRect { 
+    ) -> PaddleRect {
+        PaddleRect { 
             control: control_points,
             height: height,
             pos: pos,
@@ -162,8 +162,8 @@ impl CubicRect {
         pos: Vector3<f64>,
         rot: Rotation2<f64>,
         detail_level: usize
-    ) -> CubicRect {
-        CubicRect { 
+    ) -> PaddleRect {
+        PaddleRect { 
             control: control_points,
             height: height,
             pos: pos,
@@ -176,7 +176,7 @@ impl CubicRect {
     }
 }
 
-impl GliumStandardPrimitive for CubicRect {
+impl GliumStandardPrimitive for PaddleRect {
     type Vertex = CubicRectVertex;
 
     fn get_shaders() -> Shaders {
@@ -211,8 +211,8 @@ pub struct CubicRectVertex {
 
 implement_vertex!(CubicRectVertex, c0, c1, c2, c3, height, pos, color, rot, detail_level, anim_pos, anim_rot);
 
-impl From<CubicRect> for CubicRectVertex {
-    fn from(rect: CubicRect) -> Self {
+impl From<PaddleRect> for CubicRectVertex {
+    fn from(rect: PaddleRect) -> Self {
         let output = CubicRectVertex {
             c0: *na::convert::<_, Vector2<f32>>(rect.control.one).as_ref(),
             c1: *na::convert::<_, Vector2<f32>>(rect.control.two).as_ref(),

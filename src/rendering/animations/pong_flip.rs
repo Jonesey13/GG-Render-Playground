@@ -1,6 +1,6 @@
 use ::animation::{AnimationSpec, Animatable, AnimationWindow, AnimationFunctionEnum, AnimationType};
 use na::{Vector2, Vector3, Vector4, Rotation2};
-use ::rendering::{RenderableTestRenderable, CubicRect, BezierCubicControl};
+use ::rendering::{RenderableTestRenderable, PaddleRect, BezierCubicControl};
 use ::constants;
 use num::Zero;
 use std::f64::consts::PI;
@@ -42,7 +42,7 @@ impl PongFlip {
         AnimationSpec::new(vec![normal_window, flip_back_window, hold_window, flip_window], AnimationType::Linear)
     }
 
-    fn get_cubic(&self) -> CubicRect {
+    fn get_cubic(&self) -> PaddleRect {
         let start_pos = Vector2::new(0.0, -self.dim.y / 2.0);
         let start_middle_pos = Vector2::new(0.0, -self.dim.y / 4.0);
         let end_middle_pos = Vector2::new(0.0, self.dim.y / 4.0);
@@ -50,7 +50,7 @@ impl PongFlip {
 
         let control = BezierCubicControl::new(start_pos, start_middle_pos, end_middle_pos, end_pos);
 
-        CubicRect::new_with_anim(
+        PaddleRect::new_with_anim(
             control.into(), 
             self.dim.x, 
             Vector3::zero(), 

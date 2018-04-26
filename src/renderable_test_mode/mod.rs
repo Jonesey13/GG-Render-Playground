@@ -88,7 +88,7 @@ impl GameMode for RenderableTestMode {
             three: Vector2::new(0.25, 0.2),
             four: Vector2::new(0.75, 0.5)
         };
-        let cubic_rect = CubicRect::new_with_color(
+        let paddle_rect = PaddleRect::new_with_color(
             cubic_control.into(), 
             0.25, 
             Vector3::zero(), 
@@ -209,7 +209,7 @@ impl GameMode for RenderableTestMode {
         //     Box::new(text),
         //     Box::new(box_border),
         //     Box::new(box_border_fixed) 
-            // Box::new(cubic_rect), 
+            // Box::new(paddle_rect), 
             // Box::new(bez_branch_rect), 
             // Box::new(bez_branch_circ),             
             // Box::new(spiky_circ), 
