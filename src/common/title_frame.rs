@@ -27,7 +27,7 @@ impl TitleFrame {
             transform: Matrix2::identity(),
             color: self.text_colour,
             fixed: true,
-            align: TextAlign::Center
+            align: TextAlign::Centered
         };
 
         vec![Box::new(text_object)]

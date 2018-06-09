@@ -64,7 +64,7 @@ impl<A> MenuOption for MenuBool<A> {
             transform: Matrix2::identity(),
             color: if selected { constants::menu::SELECTED_COLOUR.into() } else { constants::menu::UNSELECTED_COLOUR.into() },
             fixed: true,
-            align: TextAlign::Center
+            align: TextAlign::Centered
         };
 
         vec![Box::new(text_object)]

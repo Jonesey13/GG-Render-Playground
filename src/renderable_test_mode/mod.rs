@@ -44,13 +44,26 @@ impl GameMode for RenderableTestMode {
     }
     
     fn get_renderables(&self) -> Vec<Box<RenderableTestRenderable>> {
-        // let rect = Rectangle {
-        //     length: 1.0,
-        //     height: 1.0,
-        //     rot: Rotation2::new(0.0),
-        //     pos: Vector3::new(0.0, 0.0, 0.1),
-        //     color: Vector4::new(0.0, 1.0, 0.0, 1.0)
-        // };
+        let rect = Rectangle {
+            length: 1.0,
+            height: 1.0,
+            rot: Rotation2::new(0.0),
+            pos: Vector3::new(0.0, 0.0, 0.1),
+            color: Vector4::new(0.1, 0.1, 0.1, 1.0),
+            fixed: false
+        };
+
+        let gradient_rect = RectWithGradient {
+            length: 1.0,
+            height: 0.2,
+            rot: Rotation2::new(0.5),
+            pos: Vector3::new(0.0, 0.0, -0.1),
+            color: Vector4::new(0.0, 1.0, 0.0, 1.0),
+            left_gradient: 0.0,
+            right_gradient: 0.8,
+            fixed: false
+        };
+
         let circ = Circle {
             radius: 0.7,
             pos: Vector3::new(-0.0, 0.0, 0.1),
@@ -72,7 +85,7 @@ impl GameMode for RenderableTestMode {
             transform: *Rotation2::new(0.0).matrix(),
             color: Vector4::new(1.0, 1.0, 1.0, 1.0),
             fixed: false,
-            align: TextAlign::Center
+            align: TextAlign::Centered
         };
 
         let quad_control = BezierQuadControl {
@@ -88,6 +101,7 @@ impl GameMode for RenderableTestMode {
             three: Vector2::new(0.25, 0.2),
             four: Vector2::new(0.75, 0.5)
         };
+
         let paddle_rect = PaddleRect::new_with_color(
             cubic_control.into(), 
             0.25, 
@@ -210,6 +224,8 @@ impl GameMode for RenderableTestMode {
         );
 
         vec![
+            Box::new(rect),
+            Box::new(gradient_rect)
         //     Box::new(circ),
         //     Box::new(ann),
         //     Box::new(text),
@@ -221,9 +237,9 @@ impl GameMode for RenderableTestMode {
             // Box::new(spiky_circ), 
             // Box::new(circ_arrow_clock),
             // Box::new(circ_arrow_anti),
-            Box::new(whack_item),
-            Box::new(stretch_item),
-            Box::new(grab_item),
+            //Box::new(whack_item),
+            //Box::new(stretch_item),
+            //Box::new(grab_item),
             // Box::new(tex_rect1),
             // Box::new(tex_rect2)
         ]

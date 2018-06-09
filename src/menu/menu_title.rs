@@ -27,7 +27,7 @@ impl MenuTitle {
             transform: Matrix2::identity(),
             color: self.colour,
             fixed: true,
-            align: TextAlign::Center
+            align: TextAlign::Centered
         };
 
         vec![Box::new(text_object)]

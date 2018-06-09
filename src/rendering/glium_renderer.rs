@@ -4,14 +4,13 @@ use gg::rendering::primitives::circle_part::{CirclePart};
 use gg::rendering::primitives::polygon::{Polygon};
 use gg::rendering::primitives::text::{TextBuffer, PlainText};
 use gg::rendering::primitives::{TextureRect}; 
-use ::rendering::primitives::{BezierBranchRect, BezierBranchCirc, PaddleRect};
-use ::rendering::RenderableTestRenderable;
+use ::rendering::primitives::*;
+use ::rendering::*;
 use gg::rendering::DisplaySettings;
 use gg::rendering::glium_buffer::{GliumBuffer, BasicBuffer};
-use ::rendering::{BezierRect, GamePrimitive};
 use gg::rendering::WindowSpec;
 use glium;
-use glium::{Display, Surface, DrawParameters, Depth, DepthTest};
+use glium::{Display, Surface, DrawParameters, Depth, DepthTest, Blend};
 use glium::texture;
 use glium::glutin::EventsLoop;
 use na;
@@ -27,6 +26,7 @@ pub struct GliumRenderer<'a> {
     events_loop: Box<EventsLoop>,
     draw_params: DrawParameters<'a>,
     rect_buffer: BasicBuffer<Rectangle>,
+    rect_with_gradient_buffer: BasicBuffer<RectWithGradient>,
     texture_rect_buffer: BasicBuffer<TextureRect>,
     circ_buffer: BasicBuffer<CirclePart>,
     polygon_buffer: BasicBuffer<Polygon>,
@@ -49,6 +49,7 @@ impl<'a> GliumRenderer<'a> {
                 test: DepthTest::IfLessOrEqual,
                 write: true,..Default::default()
             },
+            blend: Blend::alpha_blending(),
             ..Default::default()
         };
 
@@ -57,6 +58,7 @@ impl<'a> GliumRenderer<'a> {
             events_loop: Box::new(events_loop),
             draw_params: draw_params,
             rect_buffer: BasicBuffer::<Rectangle>::new(&display),
+            rect_with_gradient_buffer: BasicBuffer::<RectWithGradient>::new(&display),
             texture_rect_buffer: BasicBuffer::<TextureRect>::new(&display),
             circ_buffer: BasicBuffer::<CirclePart>::new(&display),
             polygon_buffer: BasicBuffer::<Polygon>::new(&display),
@@ -107,6 +109,7 @@ impl<'a> GliumRenderer<'a> {
 
     fn flush_buffers(&mut self) {
         self.rect_buffer.flush_buffer();
+        self.rect_with_gradient_buffer.flush_buffer();
         self.texture_rect_buffer.flush_buffer();
         self.circ_buffer.flush_buffer();
         self.polygon_buffer.flush_buffer();
@@ -164,6 +167,7 @@ impl<'a> Renderer for GliumRenderer<'a> {
             for primitive in renderable.get_primitives() {
                 match primitive {
                         GamePrimitive::Rect(rectangle) => self.rect_buffer.load_renderable(rectangle),
+                        GamePrimitive::RectWithGradient(rect) => self.rect_with_gradient_buffer.load_renderable(rect),
                         GamePrimitive::Circ(circle) => self.circ_buffer.load_renderable(circle),
                         GamePrimitive::Text(text) => self.text_processor.load_renderable(text),
                         GamePrimitive::BezierRect(bezier_rect) => self.bezier_rect_buffer.load_renderable(bezier_rect),
@@ -197,6 +201,7 @@ impl<'a> Renderer for GliumRenderer<'a> {
             };
             
             self.rect_buffer.draw_at_target(&mut target, &self.display, self.view_details, &self.draw_params, &uniforms);
+            self.rect_with_gradient_buffer.draw_at_target(&mut target, &self.display, self.view_details, &self.draw_params, &uniforms);            
             self.texture_rect_buffer.draw_at_target(&mut target, &self.display, self.view_details, &self.draw_params, &uniforms);
             self.circ_buffer.draw_at_target(&mut target, &self.display, self.view_details, &self.draw_params, &uniforms);
             self.polygon_buffer.draw_at_target(&mut target, &self.display, self.view_details, &self.draw_params, &uniforms);        

@@ -101,7 +101,7 @@ impl<E: PartialEq + Eq + Clone, A: Clone> MenuOption for MenuEnum<E, A> {
             transform: Matrix2::identity(),
             color: if selected { MenuEnum::<E,A>::selected_colour() } else { MenuEnum::<E,A>::unselected_colour() },
             fixed: true,
-            align: TextAlign::Center
+            align: TextAlign::Centered
         };
 
         vec![Box::new(text_object)]

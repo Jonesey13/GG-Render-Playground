@@ -89,7 +89,7 @@ impl<A: Clone> MenuOption for MenuRange<A> {
             transform: Matrix2::identity(),
             color: if selected { MenuRange::<A>::selected_colour() } else { MenuRange::<A>::unselected_colour() },
             fixed: true,
-            align: TextAlign::Center
+            align: TextAlign::Centered
         };
 
         vec![Box::new(text_object)]

@@ -37,7 +37,7 @@ impl<T: Clone> MenuOption for MenuClickable<T> {
             transform: Matrix2::identity(),
             color: if selected { MenuClickable::<T>::selected_colour() } else { MenuClickable::<T>::unselected_colour() },
             fixed: true,
-            align: TextAlign::Center
+            align: TextAlign::Centered
         };
 
         vec![Box::new(text_object)]
